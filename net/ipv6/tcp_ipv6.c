@@ -1640,6 +1640,10 @@ process:
 			reqsk_put(req);
 			goto discard_it;
 		}
+                if (tcp_checksum_complete(skb)) {
+			reqsk_put(req);
+			goto csum_error;
+		}
 		if (unlikely(sk->sk_state != TCP_LISTEN
 #ifdef CONFIG_MPTCP
 		&& !is_meta_sk(sk)
@@ -1649,12 +1653,12 @@ process:
 			goto lookup;
 		}
 		sock_hold(sk);
-		
+
 #ifdef CONFIG_MPTCP
 		if (is_meta_sk(sk)) {
 			bh_lock_sock(sk);
 
-			if (sock_owned_by_user(sk)) {				
+			if (sock_owned_by_user(sk)) {
 				skb->sk = sk;
 				if (unlikely(sk_add_backlog(sk, skb,
 							    sk->sk_rcvbuf + sk->sk_sndbuf))) {
