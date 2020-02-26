@@ -8376,7 +8376,7 @@ static int nl80211_set_tx_bitrate_mask(struct sk_buff *skb,
 
 	/*
 	 * The nested attribute uses enum nl80211_band as the index. This maps
-	 * directly to the enum ieee80211_band values used in cfg80211.
+	 * directly to the enum nl80211_band values used in cfg80211.
 	 */
 	BUILD_BUG_ON(NL80211_MAX_SUPP_HT_RATES > IEEE80211_HT_MCS_MASK_LEN * 8);
 	nla_for_each_nested(tx_rates, info->attrs[NL80211_ATTR_TX_RATES], rem) {

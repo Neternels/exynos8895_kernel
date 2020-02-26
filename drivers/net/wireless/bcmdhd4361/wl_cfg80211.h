@@ -79,7 +79,7 @@ struct wl_ibss;
 /* Newer kernels use defines from nl80211.h */
 #define NL80211_BAND_2GHZ	NL80211_BAND_2GHZ
 #define NL80211_BAND_5GHZ	NL80211_BAND_5GHZ
-#define IEEE80211_NUM_BANDS	NUM_NL80211_BANDS
+#define NUM_NL80211_BANDS	NUM_NL80211_BANDS
 #endif /* LINUX_VER >= 4.7 */
 
 #ifdef DHD_LOG_DUMP
