@@ -77,4 +77,6 @@ static inline void speculative_store_bypass_update_current(void)
 	speculative_store_bypass_update(current_thread_info()->flags);
 }
 
+extern void mds_user_clear_buffers(void);
+
 #endif
