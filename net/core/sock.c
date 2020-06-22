@@ -1546,6 +1546,8 @@ struct sock *sk_alloc(struct net *net, int family, gfp_t priority,
         sk->knox_uid = current->cred->uid.val;
         sk->knox_pid = current->tgid;
         /* END_OF_KNOX_NPA */
+		#endif
+		sk_tx_queue_clear(sk);
 	}
 
 	return sk;
@@ -1715,6 +1717,7 @@ struct sock *sk_clone_lock(const struct sock *sk, const gfp_t priority)
 		 */
 		sk_refcnt_debug_inc(newsk);
 		sk_set_socket(newsk, NULL);
+		sk_tx_queue_clear(newsk);
 		newsk->sk_wq = NULL;
 
 		sk_update_clone(sk, newsk);
