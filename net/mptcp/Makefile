@@ -5,7 +5,7 @@
 
 obj-$(CONFIG_MPTCP) += mptcp.o
 
-mptcp-y := mptcp_ctrl.o mptcp_ipv4.o mptcp_ofo_queue.o mptcp_pm.o \
+mptcp-y := mptcp_ctrl.o mptcp_ipv4.o mptcp_pm.o \
 	   mptcp_output.o mptcp_input.o mptcp_sched.o mptcp_fullmesh.o
 
 # you wouldnt believe how fucked this code are, just look at mptcp repo
