@@ -2751,7 +2751,7 @@ static void push_rt_tasks(struct rq *rq)
  * rq->rt.push_cpu holds the last cpu returned by this function,
  * or if this is the first instance, it must hold rq->cpu.
  */
-static int rto_next_cpu(struct root_domain *rd)
+static int rto_next_cpu(struct rq *rq)
 {
 	int prev_cpu = rq->rt.push_cpu;
 	int cpu;
