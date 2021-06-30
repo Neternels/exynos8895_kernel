@@ -1601,9 +1601,8 @@ static void configfs_composite_unbind(struct usb_gadget *gadget)
 	set_gadget_data(gadget, NULL);
 	spin_unlock_irqrestore(&gi->spinlock, flags);
 }
-
 static int configfs_composite_setup(struct usb_gadget *gadget,
-		const struct usb_ctrlrequest *ctrl)
+		   	const struct usb_ctrlrequest *ctrl)
 {
 	struct usb_composite_dev *cdev;
 	struct gadget_info *gi;
