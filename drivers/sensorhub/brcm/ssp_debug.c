@@ -342,12 +342,6 @@ bool check_wait_event(struct ssp_data *data)
 	return res;
 }
 
-static void debug_timer_func(unsigned long ptr)
-{
-	struct ssp_data *data = (struct ssp_data *)ptr;
-
-	queue_work(data->debug_wq, &data->work_debug);
-}
 
 void enable_debug_timer(struct ssp_data *data)
 {
