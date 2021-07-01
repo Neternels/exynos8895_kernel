@@ -1542,6 +1542,7 @@ struct sock *sk_alloc(struct net *net, int family, gfp_t priority,
 
 		sock_update_classid(sk);
 		sock_update_netprioidx(sk);
+                #ifdef CONFIG_KNOX_NCM
         /* START_OF_KNOX_NPA */
         sk->knox_uid = current->cred->uid.val;
         sk->knox_pid = current->tgid;
