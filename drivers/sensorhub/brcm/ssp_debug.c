@@ -222,7 +222,9 @@ int print_mcu_debug(char *pchRcvDataFrame, int *pDataIdx,
 		int iRcvDataFrameLength)
 {
 	int iLength = 0;
+#if defined(SSP_DBG)
 	int cur = *pDataIdx;
+#endif
 
 	memcpy(&iLength, pchRcvDataFrame + *pDataIdx, sizeof(u16));
 	*pDataIdx += sizeof(u16);
@@ -318,8 +320,9 @@ bool check_wait_event(struct ssp_data *data)
 	int check_sensors[2] = {ACCELEROMETER_SENSOR, LIGHT_SENSOR};
 	int i, sensor;
 	bool res = false;
+	int arrSize = (ANDROID_VERSION < 90000 ? 2 : 1);
 
-	for (i = 0 ; i < 2 ; i++) {
+	for (i = 0 ; i < arrSize ; i++) { // because light sensor does not check anymore
 		sensor = check_sensors[i];
 		//the sensor is registered
 		if ((atomic64_read(&data->aSensorEnable) & (1 << sensor))
